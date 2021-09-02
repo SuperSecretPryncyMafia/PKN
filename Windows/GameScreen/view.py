@@ -13,20 +13,41 @@ class View(BaseView):
         self.__layout_grid.setSpacing(0)
 
         self.textures = {
-            0 : QPixmap("App\GameSnake\GameScreen\Assets\grass.png"),
-            1 : QPixmap("App\GameSnake\GameScreen\Assets\\no_enter.png")
+            "rock" : QPixmap("GameScreen\Assets\grass.png"),
+            "papper" : QPixmap("GameScreen\Assets\\no_enter.png"),
+            "scissors": QPixmap("GameScreen\Assets\scissors.png")
         }
 
         self.widgets = {
-            "RockButton": PushButton("Rock", self),
-            "PapperButton": PushButton("Papper", self),
-            "ScissorsButton": PushButton("Scissors", self),
+            "choosen_weapon": Tile.empty_image(self),
+            
+            "buttons":{
+                "rock_button": PushButton("Rock", self),
+                "papper_button": PushButton("Papper", self),
+                "scissors_button": PushButton("Scissors", self),
+            }
         }
 
         self.__init__ui()
 
     def __init__ui(self):
-        for widget in self.widgets.values():
-            self.__layout_v.addWidget(widget)
 
+        self.__layout_h.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Expanding, QSizePolicy.Expanding))
+
+        self.__layout_v.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Minimum, QSizePolicy.Minimum))
+        self.__layout_v.addWidget(self.widgets["choosen_weapon"])
+        self.__layout_v.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Minimum, QSizePolicy.Minimum))
+
+        self.__layout_h.addLayout(self.__layout_v)
+        self.__layout_h.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Expanding, QSizePolicy.Expanding))
+
+        self.__layout_v = QVBoxLayout()
+        self.__layout_v.addLayout(self.__layout_h)
+        self.__layout_h = QHBoxLayout()
+
+        for widget in self.widgets["buttons"].values():
+            widget.setMinimumHeight(100)
+            self.__layout_h.addWidget(widget)
+
+        self.__layout_v.addLayout(self.__layout_h)
         self.setLayout(self.__layout_v)
