@@ -68,6 +68,9 @@ class PKNGame(QMainWindow):
         self.setCentralWidget(self.current_screen)
         self.current_screen.show()
 
+    def exit(self):
+        self.close()
+
 
 if __name__ == "__main__":
     snake = QApplication(sys.argv)
