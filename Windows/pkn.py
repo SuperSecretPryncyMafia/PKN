@@ -9,7 +9,6 @@ from __init__ import *
 """
 
 import sys
-import platform
 
 from StartScreen.start_screen import StartScreen
 from GameScreen.game_screen import GameScreen
@@ -33,7 +32,7 @@ class PKNGame(QMainWindow):
         #  Placeholder for all views
         self.screens = {
             "start": StartScreen.Controller(self),
-            # "game": GameScreen.Controller(self),
+            "game": GameScreen.Controller(self),
             "options": Options.Controller(self)
         }
 

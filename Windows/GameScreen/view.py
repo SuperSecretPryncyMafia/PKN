@@ -26,5 +26,7 @@ class View(BaseView):
         self.__init__ui()
 
     def __init__ui(self):
-        for widget in self.widgets.items():
+        for widget in self.widgets.values():
             self.__layout_v.addWidget(widget)
+
+        self.setLayout(self.__layout_v)
