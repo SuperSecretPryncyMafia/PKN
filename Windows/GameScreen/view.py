@@ -13,8 +13,8 @@ class View(BaseView):
         self.__layout_grid.setSpacing(0)
 
         self.textures = {
-            "rock" : QPixmap("GameScreen\Assets\grass.png"),
-            "papper" : QPixmap("GameScreen\Assets\\no_enter.png"),
+            "rock" : QPixmap("GameScreen\Assets\\rock.png"),
+            "paper" : QPixmap("GameScreen\Assets\paper.png"),
             "scissors": QPixmap("GameScreen\Assets\scissors.png")
         }
 
@@ -23,7 +23,7 @@ class View(BaseView):
             
             "buttons":{
                 "rock_button": PushButton("Rock", self),
-                "papper_button": PushButton("Papper", self),
+                "paper_button": PushButton("Paper", self),
                 "scissors_button": PushButton("Scissors", self),
             }
         }
