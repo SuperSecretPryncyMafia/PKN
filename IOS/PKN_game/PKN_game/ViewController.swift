@@ -14,6 +14,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-// pisze sobie cos test test, test na Sziperd-branch
+// pisze sobie cos test test, test na Sziperd-branch, test 2
 }
 
