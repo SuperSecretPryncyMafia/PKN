@@ -8,7 +8,7 @@ class Module:
         try:
             directory = Path.cwd()
             print(directory)
-            with open("{}\config.json".format(directory), "r") as f:
+            with open("{}\Windows\config.json".format(directory), "r") as f:
                 config = json.load(f)
                 return config
         except RuntimeError as err:

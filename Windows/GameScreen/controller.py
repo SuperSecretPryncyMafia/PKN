@@ -26,6 +26,6 @@ class Controller:
         self.view.widgets["choosen_weapon"].update()
 
     def event_handler(self):
-        self.view.widgets["Buttons"]["rock_button"].clicked.connect(self.rock_choosen)
-        self.view.widgets["Buttons"]["paper_button"].clicked.connect(self.paper_choosen)
+        self.view.widgets["buttons"]["rock_button"].clicked.connect(self.rock_choosen)
+        self.view.widgets["buttons"]["paper_button"].clicked.connect(self.paper_choosen)
         self.view.widgets["buttons"]["scissors_button"].clicked.connect(self.scissors_choosen)

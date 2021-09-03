@@ -13,9 +13,9 @@ class View(BaseView):
         self.__layout_grid.setSpacing(0)
 
         self.textures = {
-            "rock" : QPixmap("GameScreen\Assets\\rock.png"),
-            "paper" : QPixmap("GameScreen\Assets\paper.png"),
-            "scissors": QPixmap("GameScreen\Assets\scissors.png")
+            "rock" : QPixmap("Windows\GameScreen\Assets\\rock.png"),
+            "paper" : QPixmap("Windows\GameScreen\Assets\paper.png"),
+            "scissors": QPixmap("Windows\GameScreen\Assets\scissors.png")
         }
 
         self.widgets = {
@@ -31,15 +31,14 @@ class View(BaseView):
         self.__init__ui()
 
     def __init__ui(self):
+        self.__layout_h.addWidget(Tile.empty_image(self), 1)
 
-        self.__layout_h.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Expanding, QSizePolicy.Expanding))
-
-        self.__layout_v.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Minimum, QSizePolicy.Minimum))
+        self.__layout_h.addWidget(Tile.empty_image(self))
         self.__layout_v.addWidget(self.widgets["choosen_weapon"])
-        self.__layout_v.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Minimum, QSizePolicy.Minimum))
+        self.__layout_h.addWidget(Tile.empty_image(self))
 
         self.__layout_h.addLayout(self.__layout_v)
-        self.__layout_h.addSpacerItem(QSpacerItem(50, 50, QSizePolicy.Expanding, QSizePolicy.Expanding))
+        self.__layout_h.addWidget(Tile.empty_image(self), 1)
 
         self.__layout_v = QVBoxLayout()
         self.__layout_v.addLayout(self.__layout_h)

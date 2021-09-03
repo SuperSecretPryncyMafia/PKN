@@ -34,13 +34,18 @@ class Tile(QLabel):
         else:
             Theme.LightTheme.button(self)
 
+    def resizeEvent(self, eve: QResizeEvent) -> None:
+        self.update()
+
+        super().resizeEvent(eve)
+
     @classmethod
     def empty_image(cls, parent_window: QMainWindow):
         return cls(parent_window, None)
 
     def update(self):
         if self.image:
-            self.image = self.image.scaled(self.width(), self.height())
+            self.image = self.image.scaled(self.height(), self.height(), aspectRatioMode=Qt.KeepAspectRatio)
             self.setPixmap(self.image)
             self.setScaledContents(True)
         else:
