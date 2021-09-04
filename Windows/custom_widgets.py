@@ -27,15 +27,17 @@ class Tile(QLabel):
         super(Tile, self).__init__(parent)
         self.parent = parent
         self.image = image
-        self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        # self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+
         if self.parent.theme == 0:
             Theme.DarkTheme.button(self)
         else:
             Theme.LightTheme.button(self)
 
-    def resizeEvent(self, event: QResizeEvent):
-        self.setMinimumWidth(self.height())
+    def resizeEvent(self, eve: QResizeEvent) -> None:
+        self.update()
+
+        super().resizeEvent(eve)
 
     @classmethod
     def empty_image(cls, parent_window: QMainWindow):
@@ -43,7 +45,7 @@ class Tile(QLabel):
 
     def update(self):
         if self.image:
-            self.image.scaled(self.width(), self.height(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+            self.image = self.image.scaled(self.height(), self.height(), aspectRatioMode=Qt.KeepAspectRatio)
             self.setPixmap(self.image)
             self.setScaledContents(True)
         else:

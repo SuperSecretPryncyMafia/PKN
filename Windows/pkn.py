@@ -13,6 +13,7 @@ import sys
 from StartScreen.start_screen import StartScreen
 from GameScreen.game_screen import GameScreen
 from Options.options import Options
+from WaitingRoom.waiting_room import WaitingRoom
 from style_sheets import Theme
 
 
@@ -32,6 +33,7 @@ class PKNGame(QMainWindow):
         #  Placeholder for all views
         self.screens = {
             "start": StartScreen.Controller(self),
+            "wait": WaitingRoom.Controller(self),
             "game": GameScreen.Controller(self),
             "options": Options.Controller(self)
         }
