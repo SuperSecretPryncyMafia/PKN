@@ -1,0 +1,5 @@
+FROM winamd64/python:3.9-windowsservercore-1809
+COPY . /app
+RUN powershell -Command Add-WindowsFeature Web-Server
+CMD ["cd", "app"]
+CMD ["pip", "install", "requirments.txt"]
