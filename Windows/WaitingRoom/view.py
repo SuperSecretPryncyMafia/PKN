@@ -18,7 +18,13 @@ class View(BaseView):
         self.__layout_v = QVBoxLayout()
         self.__layout_h = QHBoxLayout()
 
-        self.__init__ui()
+        self.__init_ui()
     
     def __init_ui(self):
-        pass
+        self.__layout_v.addWidget(self.widgets["waiting_label"], 2, Qt.AlignCenter)
+        self.__layout_v.addWidget(self.widgets["down_counter"], 1, Qt.AlignCenter)
+        self.__layout_v.addWidget(self.widgets["information_label"], 1, Qt.AlignCenter)
+        self.__layout_v.addWidget(self.widgets["players_counter"], 2, Qt.AlignCenter)
+        self.__layout_v.addWidget(self.widgets["exit_button"], 2, Qt.AlignCenter)
+
+        self.setLayout(self.__layout_v)

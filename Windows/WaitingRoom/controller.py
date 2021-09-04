@@ -1,4 +1,4 @@
-from view import View, QMainWindow
+from .view import View, QMainWindow
 
 
 class Controller:
@@ -9,5 +9,8 @@ class Controller:
         self.view = View(self.parent_window)
         self.event_handler()
 
+    def to_start(self):
+        self.parent_window.change_to("wait", "start")
+
     def event_handler(self):
-        self.view.widgets["exit_button"].clicked.connect(exit)
+        self.view.widgets["exit_button"].clicked.connect(self.to_start)

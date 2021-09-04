@@ -10,7 +10,7 @@ class Controller:
         self.event_handler()
 
     def to_play(self):
-        self.parent_window.change_to("start", "game")
+        self.parent_window.change_to("start", "wait")
 
     def to_options(self):
         self.parent_window.change_to("start", "options")
