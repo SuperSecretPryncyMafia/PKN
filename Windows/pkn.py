@@ -1,12 +1,4 @@
 from __init__ import *
-"""
-(
-    QMainWindow,
-    QWidget,
-    QApplication,
-    QMessageBox,
-)
-"""
 
 import sys
 from threading import Thread
@@ -19,7 +11,14 @@ from style_sheets import Theme
 
 
 class PKNGame(QMainWindow):
-    
+    """
+    The main window of the application.
+    Inherits from QMainWindow and extends its functionality 
+    as an overseer. This object coordinates the views, pop-ups and themes.
+    After all preperations and initializations launches two parallel threads
+    to simunainously show the main menu (start screen) and, if there is no registered name,
+    launch the pop-up to make sure that user has choosen the name.
+    """
     def __init__(self):
         super(PKNGame, self).__init__()
         self.screen_size = QDesktopWidget().screenGeometry()
@@ -48,15 +47,32 @@ class PKNGame(QMainWindow):
 
     @staticmethod
     def login_popup_static(config: dict, parent_window: QMainWindow):
+        """
+        Takes care of pop-up in the Option view after reseting the options to default
+        which also resets the username.
+
+        parameters:
+        config - configuration dictionary objecct taken from the json during initialization of the main window.
+        parent_window - The main window of the entire application.
+
+        returns:
+        None
+        """
         if config["username"] == "":
             while config["username"] == "":
                 text = QInputDialog.getText(parent_window, "Login", "Choose your username:")[0]
                 config["username"] = text
 
     def login_popup(self):
+        """
+        Takes care of pop-up at the start of the application.
+        This dialog is not letting unnamed user to play.
+        """
         if self.config["username"] == "":
+            text = QInputDialog.getText(self, "Login", "Choose your username:")[0]
+            self.config["username"] = text
             while self.config["username"] == "":
-                text = QInputDialog.getText(self, "Login", "Choose your username:")[0]
+                text = QInputDialog.getText(self, "Login", "Choose your username:\nYou need to enter something!")[0]
                 self.config["username"] = text
             Options.Module.overwrite_config(self.config)
 
