@@ -19,7 +19,7 @@ class View(BaseView):
         self.__layout_h = QHBoxLayout()
 
         self.__init_ui()
-    
+
     def __init_ui(self):
         self.__layout_v.addWidget(self.widgets["waiting_label"], 2, Qt.AlignCenter)
         self.__layout_v.addWidget(self.widgets["down_counter"], 1, Qt.AlignCenter)

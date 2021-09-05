@@ -9,6 +9,7 @@ from __init__ import *
 """
 
 import sys
+from threading import Thread
 
 from StartScreen.start_screen import StartScreen
 from GameScreen.game_screen import GameScreen
@@ -39,10 +40,25 @@ class PKNGame(QMainWindow):
         }
 
         self.current_screen = None
-
+        
         self.__hide_all()
         self.__start_screen()
-        self.show()
+        Thread(target = self.show())
+        Thread(target = self.login_popup())
+
+    @staticmethod
+    def login_popup_static(config: dict, parent_window: QMainWindow):
+        if config["username"] == "":
+            while config["username"] == "":
+                text = QInputDialog.getText(parent_window, "Login", "Choose your username:")[0]
+                config["username"] = text
+
+    def login_popup(self):
+        if self.config["username"] == "":
+            while self.config["username"] == "":
+                text = QInputDialog.getText(self, "Login", "Choose your username:")[0]
+                self.config["username"] = text
+            Options.Module.overwrite_config(self.config)
 
     def __hide_all(self):
         for screen in self.screens.values():
@@ -63,12 +79,16 @@ class PKNGame(QMainWindow):
         :param to_screen: str
         :return: None
         """
+        self.login_popup_static(self.config, self)
         self.current_screen.hide()
         # Reinitialization of screen to handle the Buffer Stack Overflow qt error ( -1073740791 (0xC0000409) )
         self.screens[from_screen].__init__(self)
         self.current_screen = self.screens[to_screen].view
         self.setCentralWidget(self.current_screen)
         self.current_screen.show()
+
+    def exit(self):
+        self.close()
 
 
 if __name__ == "__main__":
