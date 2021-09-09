@@ -2,11 +2,15 @@ import time
 
 class Timer:
     def __init__(self, mins: int, secs: int):
+        self.secs = secs
         self.mins = mins
         div = int(secs/60)
         self.mins += div
-        self.secs = int(secs/(60*div))
         
+        if div:
+            self.secs = int(secs/(60*div))
+
+        self.timer =  "{}:{:02d}".format(self.mins, self.secs)
         self.timer_update()
 
     @classmethod
@@ -27,7 +31,7 @@ class Timer:
             self.secs = 59
 
     def timer_update(self):
-        self.timer = "{}:{:02d}".format(self.mins, self.secs)
+        self.timer =  "{}:{:02d}".format(self.mins, self.secs)
 
     def return_time(self):
         return(self.timer)
