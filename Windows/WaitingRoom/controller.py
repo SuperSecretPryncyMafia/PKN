@@ -14,6 +14,7 @@ class Controller:
         self.event_handler()
 
     def to_start(self):
+        self.view = View(self.parent_window, self.waiting_time, self)
         self.parent_window.change_to("wait", "start")
 
     def to_game(self):

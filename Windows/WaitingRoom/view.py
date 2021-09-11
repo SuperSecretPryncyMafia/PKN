@@ -1,7 +1,7 @@
 from .__init__ import *
 from custom_widgets import *
 from timer import Timer
-from threading import Thread
+from counter_thread import CounterThread
 
 
 class View(BaseView):
@@ -10,13 +10,12 @@ class View(BaseView):
         self.controller = controller
         self.timer = Timer.only_seconds(waiting_time)
         self.time = self.timer.return_time()
-        self.timer_process = Thread(target=self.start_time)
-        self.flag = 0
-        self.signal = pyqtSignal()
+        self.flag = [0]
+        self.timer_thread = CounterThread(target=self.start_time, flag=self.flag)
 
         self.widgets = {
             "waiting_label": TitleLabel("Waiting...", self),
-            "down_counter": QLabel("{}".format(self.time), self),
+            "down_counter": QLabel("{}".format(self.time)),
             "information_label": PushButton("-- some information --", self),
             "players_table": None,
             "players_counter": QLabel("one :3", self),
@@ -40,8 +39,8 @@ class View(BaseView):
         while self.timer.mins + self.timer.secs > 0:
             self.timer.decrease_one_second()
             self.timer.timer_update()
-            if self.flag == 1:
-                break
+            if self.flag[0] == 1:
+                return
             self.widget_update()
         self.controller.to_game()
 
@@ -49,13 +48,11 @@ class View(BaseView):
         self.widgets["down_counter"].setText(self.timer.return_time())
 
     def showEvent(self, event: QShowEvent):
-        print("Waiting room is visible!")
         super(View, self).showEvent(event)
-        self.timer_process.start()
+        self.timer_thread.start()
 
     def hideEvent(self, event: QHideEvent):
-        print("Waiting room is now invisible!")
-        self.flag = 1
+        self.flag[0] = 1
         super(View, self).hideEvent(event)
         
         
