@@ -1,5 +1,9 @@
+
+# Using windows image with python in it
 FROM winamd64/python:3.9-windowsservercore-1809
+
+# Coping whole contence to the app folder
 COPY . /app
+
+# Running the powershell for futher commands
 RUN powershell -Command Add-WindowsFeature Web-Server
-CMD ["cd", "app"]
-CMD ["pip", "install", "requirments.txt"]

@@ -89,7 +89,7 @@ class TitleLabel(QLabel):
         self.setText = self.text
         self.update()
         self.setFont(self.font)
-        
+
 
 class SidePanel(QGroupBox):
     def __init__(self, text: str, parent: QWidget):

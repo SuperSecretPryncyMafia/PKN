@@ -34,7 +34,7 @@ class View(BaseView):
         self.__layout_h.addWidget(Tile.empty_image(self), 1)
 
         self.__layout_h.addWidget(Tile.empty_image(self))
-        self.__layout_v.addWidget(self.widgets["choosen_weapon"])
+        self.__layout_v.addWidget(self.widgets["choosen_weapon"], 2)
         self.__layout_h.addWidget(Tile.empty_image(self))
 
         self.__layout_h.addLayout(self.__layout_v)
@@ -46,6 +46,7 @@ class View(BaseView):
 
         for widget in self.widgets["buttons"].values():
             widget.setMinimumHeight(100)
+            widget.setMaximumHeight(100)
             self.__layout_h.addWidget(widget)
 
         self.__layout_v.addLayout(self.__layout_h)
