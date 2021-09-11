@@ -1,6 +1,7 @@
 from __init__ import QMainWindow
 from .view import View
 from .module import Module
+from threading import Thread
 
 
 class Controller:
@@ -18,6 +19,7 @@ class Controller:
 
     def save_and_leave(self):
         self.save_changes()
+        self.parent_window.login_popup()
         self.to_start()
 
     def save_changes(self):
@@ -25,6 +27,7 @@ class Controller:
 
     def set_default(self):
         self.config = Module.get_default()
+        Thread(target = self.parent_window.login_popup_static(self.config, self.parent_window))
 
     def event_handler(self):
         self.view.widgets["exit_buttons"]["save_button"].clicked.connect(self.save_and_leave)

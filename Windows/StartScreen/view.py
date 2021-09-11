@@ -36,3 +36,6 @@ class View(BaseView):
         self.__layout_h.addLayout(self.__layout_v)
 
         self.setLayout(self.__layout_h)
+
+
+
