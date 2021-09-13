@@ -19,11 +19,9 @@ class View(BaseView):
             "exit_buttons": {
                 "save_button": PushButton(" Save and leave ", self),
                 "return_button": PushButton("Leave without saving", self),
-                "default_button": PushButton(" Set default ", self),
+                "default_button": PushButton(" Reset Nickname ", self),
             },
         }
-
-        #self.widgets["option_labels"]["option4"].addItems(self.config["options"]["option4"])
 
         self.layout_v = QVBoxLayout()
         self.layout_h = QHBoxLayout()
@@ -32,14 +30,14 @@ class View(BaseView):
 
     def __init_ui(self):
         self.layout_h.addSpacing(20)
-        self.layout_h.addWidget(self.widgets["options_title"], alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.layout_h.addWidget(self.widgets["options_title"], alignment=Qt.AlignCenter | Qt.AlignTop)
         self.layout_h.addSpacing(20)
 
         self.layout_v.addLayout(self.layout_h)
 
         for w in self.widgets["option_labels"].values():
             w.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-            self.layout_v.addWidget(w, 1, alignment=Qt.AlignLeft | Qt.AlignTop)
+            self.layout_v.addWidget(w, 1, alignment=Qt.AlignCenter | Qt.AlignTop)
 
         self.layout_h = QHBoxLayout()
         for w in self.widgets["exit_buttons"].values():

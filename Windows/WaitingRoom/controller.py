@@ -1,7 +1,5 @@
 from .view import View, QMainWindow
 from .model import Model
-from threading import Thread
-from timer import Timer
 
 
 class Controller:
