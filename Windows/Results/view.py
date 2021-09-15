@@ -11,6 +11,8 @@ class View(BaseView):
             "results_title": TitleLabel("Results", self),
         }
 
+        self.players = []
+
         self.layout_v = QVBoxLayout()
         self.layout_h = QHBoxLayout()
 
@@ -20,3 +22,4 @@ class View(BaseView):
         self.layout_h.addSpacing(20)
         self.layout_h.addWidget(self.widgets["results_title"], alignment=Qt.AlignCenter | Qt.AlignTop)
         self.layout_h.addSpacing(20)
+ 

@@ -91,6 +91,33 @@ class TitleLabel(QLabel):
         self.setFont(self.font)
 
 
+class InformationLabel(QLabel):
+    def __init__(self, text: str, parent: QWidget):
+        super().__init__(text, parent)
+        self.parent = parent
+        self.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+        self.font = QFont()
+        self.setScaledContents(True)
+        self.font.setPointSize(14)
+        self.setFont(self.font)
+
+        if self.parent.theme == 0:
+            Theme.DarkTheme.title_label(self)
+        else:
+            Theme.LightTheme.title_label(self)
+    
+    def resizeEvent(self, eve: QResizeEvent) -> None:
+        self.update_size()
+        super().resizeEvent(eve)
+
+    def update_size(self):
+        self.font = QFont()
+        self.font.setPointSize(int(self.height()/8))
+        self.setText = self.text
+        self.update()
+        self.setFont(self.font)
+
+
 class SidePanel(QGroupBox):
     def __init__(self, text: str, parent: QWidget):
         super().__init__(text, parent)

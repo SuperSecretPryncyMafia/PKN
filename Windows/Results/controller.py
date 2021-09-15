@@ -1,5 +1,6 @@
 from __init__ import QMainWindow
 from .view import View
+from .model import Model
 
 
 class Controller:
@@ -8,3 +9,4 @@ class Controller:
         self.parent_window = parent_window
         self.round = round
         self.view = View(self.parent_window, self.round)
+        self.module = Model()

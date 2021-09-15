@@ -2,6 +2,6 @@ import json
 from pathlib import Path
 
 
-class Module:
+class Model:
     pass
 
