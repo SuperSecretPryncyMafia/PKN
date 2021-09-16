@@ -7,6 +7,7 @@ from counter_thread import CounterThread
 class View(BaseView):
     def __init__(self, parent_window: QMainWindow, waiting_time: int, controller):
         super(View, self).__init__(parent_window)
+        self.parent_window = parent_window
         self.controller = controller
         self.timer = Timer.only_seconds(waiting_time)
         self.time = self.timer.return_time()
@@ -17,7 +18,6 @@ class View(BaseView):
             "waiting_label": TitleLabel("Waiting...", self),
             "down_counter": QLabel("{}".format(self.time)),
             "information_label": PushButton("-- some information --", self),
-            "players_table": None,
             "players_counter": QLabel("one :3", self),
             "exit_button": PushButton("exit", self),
         }
@@ -27,11 +27,15 @@ class View(BaseView):
         self.__init_ui()
         
     def __init_ui(self):
-        self.__layout_v.addWidget(self.widgets["waiting_label"], 2)
+        for w in self.widgets.values():
+            w.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            w.setMaximumWidth(self.parent_window.screen_size.width())
+
+        self.__layout_v.addWidget(self.widgets["waiting_label"], 1)
         self.__layout_v.addWidget(self.widgets["down_counter"], 1)
         self.__layout_v.addWidget(self.widgets["information_label"], 1)
-        self.__layout_v.addWidget(self.widgets["players_counter"], 2)
-        self.__layout_v.addWidget(self.widgets["exit_button"], 2)
+        self.__layout_v.addWidget(self.widgets["players_counter"], 1)
+        self.__layout_v.addWidget(self.widgets["exit_button"], 1)
 
         self.setLayout(self.__layout_v)
 

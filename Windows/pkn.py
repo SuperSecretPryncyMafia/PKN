@@ -35,7 +35,7 @@ class PKNGame(QMainWindow):
         self.screens = {
             "start": StartScreen.Controller(self),
             "wait": WaitingRoom.Controller(self),
-            "results": Results.Controller(self),
+            #"results": Results.Controller(self),
             "game": GameScreen.Controller(self),
             "options": Options.Controller(self)
         }

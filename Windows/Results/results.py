@@ -1,11 +1,11 @@
 from .controller import Controller
 from .view import View
-from .module import Module
+from .model import Model
 from abc import ABC
 
 
 class Results(ABC):
     Controller = Controller
     View = View
-    Module = Module
+    Model = Model
     
