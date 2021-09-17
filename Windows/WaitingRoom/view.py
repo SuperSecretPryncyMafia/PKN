@@ -16,9 +16,9 @@ class View(BaseView):
 
         self.widgets = {
             "waiting_label": TitleLabel("Waiting...", self),
-            "down_counter": QLabel("{}".format(self.time)),
+            "down_counter": InformationLabel("{}".format(self.time), self),
             "information_label": PushButton("-- some information --", self),
-            "players_counter": QLabel("one :3", self),
+            "players_counter": InformationLabel("one :3", self),
             "exit_button": PushButton("exit", self),
         }
 
@@ -27,15 +27,11 @@ class View(BaseView):
         self.__init_ui()
         
     def __init_ui(self):
+        self.widgets["waiting_label"].setAlignment(Qt.AlignCenter)
         for w in self.widgets.values():
-            w.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            w.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
             w.setMaximumWidth(self.parent_window.screen_size.width())
-
-        self.__layout_v.addWidget(self.widgets["waiting_label"], 1)
-        self.__layout_v.addWidget(self.widgets["down_counter"], 1)
-        self.__layout_v.addWidget(self.widgets["information_label"], 1)
-        self.__layout_v.addWidget(self.widgets["players_counter"], 1)
-        self.__layout_v.addWidget(self.widgets["exit_button"], 1)
+            self.__layout_v.addWidget(w, 1)
 
         self.setLayout(self.__layout_v)
 

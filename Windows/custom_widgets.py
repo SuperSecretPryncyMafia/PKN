@@ -95,16 +95,17 @@ class InformationLabel(QLabel):
     def __init__(self, text: str, parent: QWidget):
         super().__init__(text, parent)
         self.parent = parent
-        self.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+        self.text = text
+        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.setAlignment(Qt.AlignCenter)
         self.font = QFont()
-        self.setScaledContents(True)
-        self.font.setPointSize(14)
+        self.font.setPointSize(1)
         self.setFont(self.font)
 
         if self.parent.theme == 0:
-            Theme.DarkTheme.title_label(self)
+            Theme.DarkTheme.info_label(self)
         else:
-            Theme.LightTheme.title_label(self)
+            Theme.LightTheme.info_label(self)
     
     def resizeEvent(self, eve: QResizeEvent) -> None:
         self.update_size()
@@ -112,8 +113,8 @@ class InformationLabel(QLabel):
 
     def update_size(self):
         self.font = QFont()
-        self.font.setPointSize(int(self.height()/8))
-        self.setText = self.text
+        self.font.setPointSize(int(self.height()/10))
+        self.setText(self.text)
         self.update()
         self.setFont(self.font)
 
