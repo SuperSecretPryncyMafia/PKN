@@ -11,7 +11,7 @@ class Module:
                 config = json.load(f)
                 return config
         except RuntimeError as err:
-                print("Error occured: {}".format(err))
+            print("Error occured: {}".format(err))
 
     @staticmethod
     def get_default() -> dict:
@@ -21,7 +21,7 @@ class Module:
                 config = json.load(f)
                 return config
         except RuntimeError as err:
-                print("Error occured: {}".format(err))
+            print("Error occured: {}".format(err))
         
     @staticmethod
     def overwrite_config(config: dict):
@@ -30,7 +30,7 @@ class Module:
             with open("{}\Windows\config.json".format(directory), "w") as f:
                 json.dump(config, f)
         except RuntimeError as err:
-                print("Error occured: {}".format(err))
+            print("Error occured: {}".format(err))
 
 
 
