@@ -34,5 +34,5 @@ class Timer:
         self.timer =  "{}:{:02d}".format(self.mins, self.secs)
 
     def return_time(self):
-        return(self.timer)
+        return str(self.timer)
 

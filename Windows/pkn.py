@@ -7,6 +7,7 @@ from StartScreen.start_screen import StartScreen
 from GameScreen.game_screen import GameScreen
 from Options.options import Options
 from WaitingRoom.waiting_room import WaitingRoom
+from Results.results import Results
 from style_sheets import Theme
 
 
@@ -34,6 +35,7 @@ class PKNGame(QMainWindow):
         self.screens = {
             "start": StartScreen.Controller(self),
             "wait": WaitingRoom.Controller(self),
+            #"results": Results.Controller(self),
             "game": GameScreen.Controller(self),
             "options": Options.Controller(self)
         }

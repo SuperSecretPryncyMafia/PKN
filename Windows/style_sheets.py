@@ -46,6 +46,17 @@ class DarkTheme:
         """)
 
     @staticmethod
+    def info_label(obj):
+        obj.setStyleSheet("""
+        QLabel{
+            color: #212121;
+            font: medium Ubuntu;
+            font-size: 14px;
+        
+        }
+        """)
+
+    @staticmethod
     def tile_style(obj):
         obj.setStyleSheet("""
         QLabel{
@@ -112,6 +123,18 @@ class LightTheme:
         
         }
         """)
+
+    @staticmethod
+    def info_label(obj):
+        obj.setStyleSheet("""
+        QLabel{
+            color: #202020;
+            font: medium Ubuntu;
+            font-size: 14px;
+        
+        }
+        """)
+    
 
     @staticmethod
     def tile_style(obj):
