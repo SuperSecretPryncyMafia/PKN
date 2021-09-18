@@ -7,7 +7,7 @@ class View(BaseView):
         super(View, self).__init__(parent_window)
 
         self.widgets = {
-            "title_label": TitleLabel("Title", self),
+            "title_label": TitleLabel("Rock-Paper-Scissors", self),
             "scores_button": PushButton("highscores", self),
 
             "play_button": PushButton("play", self),
