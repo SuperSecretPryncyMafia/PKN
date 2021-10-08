@@ -18,6 +18,7 @@ class Controller:
     def event_handler(self):
         self.view.widgets["play_button"].clicked.connect(self.to_play)
         self.view.widgets["options_button"].clicked.connect(self.to_options)
+        self.view.widgets["theme_button"].clicked.connect(self.parent_window.switch_theme)
         self.view.widgets["exit_button"].clicked.connect(self.parent_window.exit)
 
 

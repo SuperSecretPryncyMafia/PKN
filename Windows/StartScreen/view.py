@@ -8,7 +8,7 @@ class View(BaseView):
 
         self.widgets = {
             "title_label": TitleLabel("Rock-Paper-Scissors", self),
-            "scores_button": PushButton("highscores", self),
+            "theme_button": PushButton("switch theme", self),
 
             "play_button": PushButton("play", self),
             "options_button": PushButton("options", self),

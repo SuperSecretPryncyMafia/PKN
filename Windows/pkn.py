@@ -1,9 +1,11 @@
+# Third party libraries
 from __init__ import *
 
+# Built-in packages
 import sys
-from profile import Profile
 from threading import Thread
 
+# Project specific packages
 from StartScreen.start_screen import StartScreen
 from GameScreen.game_screen import GameScreen
 from Options.options import Options
@@ -28,10 +30,7 @@ class PKNGame(QMainWindow):
         self.language = self.config["language"]
         self.theme = self.config["theme"]
 
-        if self.theme:
-            Theme.LightTheme.widget(self)
-        else:
-            Theme.DarkTheme.widget(self)
+        self.use_theme()
 
         #  Placeholder for all views
         self.screens = {
@@ -48,6 +47,12 @@ class PKNGame(QMainWindow):
         self.__start_screen()
         Thread(target = self.show())
         Thread(target = self.login_popup())
+
+    def use_theme(self):
+        if self.theme:
+            Theme.LightTheme.widget(self)
+        else:
+            Theme.DarkTheme.widget(self)
 
     @staticmethod
     def login_popup_static(config: dict, parent_window: QMainWindow):
@@ -91,6 +96,27 @@ class PKNGame(QMainWindow):
         self.current_screen = self.screens["start"].view
         self.setCentralWidget(self.current_screen)
         self.current_screen.show()
+
+    def switch_theme(self):
+        if self.theme == 0:
+            self.theme = 1
+            self.__overwrite_config()
+            Theme.LightTheme.widget(self)
+            self.__reinit()
+        else:
+            self.theme = 0
+            self.__overwrite_config()
+            Theme.DarkTheme.widget(self)
+            self.__reinit()
+    
+    def __overwrite_config(self):
+        Options.Module.overwrite_config(self.config)
+
+    def __reinit(self):
+        self.__hide_all()
+        for screen in self.screens.values():
+            screen.__init__(self)
+        self.__start_screen()
     
     def change_to(self, from_screen: str, to_screen: str) -> None:
         """
@@ -112,7 +138,6 @@ class PKNGame(QMainWindow):
 
 
 if __name__ == "__main__":
-    Profile.profile()
     snake = QApplication(sys.argv)
     PKNGame()
     sys.exit(snake.exec_())
