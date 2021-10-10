@@ -1,0 +1,9 @@
+{
+    "login_popup": 
+    {
+        "login_label": "Login",
+        "information": "Choose name:",
+        "information_repeat": "Choose name:\nYou need to choose some name!"
+    }
+
+}

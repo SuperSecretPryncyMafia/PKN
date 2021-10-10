@@ -1,6 +1,7 @@
 from __init__ import *
 
 import sys
+from profile import Profile
 from threading import Thread
 
 from StartScreen.start_screen import StartScreen
@@ -24,6 +25,7 @@ class PKNGame(QMainWindow):
         super(PKNGame, self).__init__()
         self.screen_size = QDesktopWidget().screenGeometry()
         self.config = Options.Module.get_config()
+        self.language = self.config["language"]
         self.theme = self.config["theme"]
 
         if self.theme:
@@ -110,6 +112,7 @@ class PKNGame(QMainWindow):
 
 
 if __name__ == "__main__":
+    Profile.profile()
     snake = QApplication(sys.argv)
     PKNGame()
     sys.exit(snake.exec_())
